@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Sword
   Icon: {fileID: 21300000, guid: 3482dfac656d0b740a9e4c72290d0d82, type: 3}
+  Equipment: 1
   EquipType: 2
   Armor: 0
   Damage: 20

@@ -16,7 +16,7 @@ public class LoadItem : MonoBehaviour
         SpriteRenderer.sprite = Item.Icon;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
@@ -44,16 +44,5 @@ public class LoadItem : MonoBehaviour
     public void Use()
     {
         InventoryManager.Instance.Use(this);
-    }
-
-    public void Equip()
-    {
-        EquipManager.Instance.EquipItem(this);
-    }
-
-    public void Destroy()
-    {
-        InventoryManager.Instance.DropItem(this);
-        Destroy(this);
     }
 }

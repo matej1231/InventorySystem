@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class EquipSlotController : MonoBehaviour
 {
-
     public LoadItem LoadItem;
 
     private void Start()

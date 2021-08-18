@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: HeadArmor
   Icon: {fileID: 21300000, guid: ea5e1019d8028e04eb8aea441eb9ac44, type: 3}
+  Equipment: 1
+  EquipType: 0
   Armor: 25
   Damage: 0

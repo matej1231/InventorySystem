@@ -1,16 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventorySlotController : MonoBehaviour, IPointerClickHandler
+public class InventorySlotController : MonoBehaviour
 {
-    Button Button;
+    Button Button, EquipButton;
     public LoadItem LoadItem;
+
+    GameObject Child;
 
     private void Awake()
     {
+        EquipButton = GetComponentInChildren<Button>();
+        Child = transform.GetChild(2).gameObject;
+        EquipButton = Child.gameObject.GetComponent<Button>();
         Button = GetComponent<Button>();
     }
     private void Start()
@@ -25,6 +29,20 @@ public class InventorySlotController : MonoBehaviour, IPointerClickHandler
 
         if (LoadItem)
         {
+            Button.onClick.RemoveAllListeners();
+            Button.onClick.AddListener(() =>
+            {
+                LoadItem.DropItem();
+                Button.onClick.RemoveAllListeners();
+            });
+
+            EquipButton.onClick.RemoveAllListeners();
+            EquipButton.onClick.AddListener(() =>
+            {
+                LoadItem.Use();
+                EquipButton.onClick.RemoveAllListeners();
+            });
+
             DisplayText.text = LoadItem.Item.ItemName;
             DisplayImage.sprite = LoadItem.Item.Icon;
             DisplayImage.color = Color.white;
@@ -34,33 +52,6 @@ public class InventorySlotController : MonoBehaviour, IPointerClickHandler
             DisplayText.text = "";
             DisplayImage.sprite = null;
             DisplayImage.color = Color.clear;
-        }
-    }
-
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        if (LoadItem)
-        {
-            if (eventData.button == PointerEventData.InputButton.Left)
-            {
-                Button.onClick.AddListener(() =>
-                {
-                    LoadItem.DropItem();
-                    Button.onClick.RemoveAllListeners();
-                });
-            }
-            if (eventData.button == PointerEventData.InputButton.Right)
-            {
-                Button.onClick.AddListener(() =>
-                {
-                    LoadItem.Use();
-                    if (LoadItem)
-                    {
-                        LoadItem.Destroy();
-                    }
-                    Button.onClick.RemoveAllListeners();
-                });
-            }
         }
     }
 }

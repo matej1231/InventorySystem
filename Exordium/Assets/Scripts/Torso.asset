@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Torso
   Icon: {fileID: 21300000, guid: 4d7d8651afea24240996519d865e751f, type: 3}
+  Equipment: 1
   EquipType: 1
   Armor: 0
   Damage: 50

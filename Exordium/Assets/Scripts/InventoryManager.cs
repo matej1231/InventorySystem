@@ -66,7 +66,6 @@ public class InventoryManager : MonoBehaviour
     {
         if(LoadItem != null)
         {
-            DropItem(LoadItem);
             EquipManager.Instance.EquipItem(LoadItem);
         }
     }

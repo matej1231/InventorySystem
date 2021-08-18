@@ -40,19 +40,22 @@ public class EquipManager : MonoBehaviour
 
     public void EquipItem(LoadItem LoadItem)
     {
-        if (EquipItems.Count < _listLength)
+        if (LoadItem.Item.Equipment)
         {
-            EquipItems.Add(LoadItem);
-            UpdatePanelSlots();
+            if (EquipItems.Count < _listLength)
+            {
+                InventoryManager.Instance.DropItem(LoadItem);
+                EquipItems.Add(LoadItem);
+                UpdatePanelSlots();
+            }
+            else
+            {
+                Debug.Log("Equipment full!");
+            }
         }
         else
         {
-            Debug.Log("Equipment full!");
+            Debug.Log("Cannot equip " + LoadItem.Item.ItemName);
         }
-    }
-    public void DropItem(LoadItem LoadItem)
-    {
-        EquipItems.Remove(LoadItem);
-        UpdatePanelSlots();
     }
 }
